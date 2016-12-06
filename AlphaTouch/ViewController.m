@@ -20,9 +20,14 @@
     self.view.backgroundColor = [UIColor yellowColor];
     UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     firstButton.frame =CGRectMake(100, 100, 100, 44);
-    [firstButton setTitle:@"Click me!" forState:UIControlStateNormal];
+    [firstButton setTitle:@"Make 50%" forState:UIControlStateNormal];
     [self.view addSubview:firstButton];
     [firstButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *secondButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    secondButton.frame = CGRectMake(100, 300, 100, 44);
+    [secondButton setTitle:@"Make 100%" forState:UIControlStateNormal];
+    [self.view addSubview:secondButton];
+    [secondButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)loadView
 {
@@ -42,6 +47,10 @@ UIView *view = [[UIView alloc]initWithFrame:viewRect];
 -(void)buttonPressed:(UIButton *)sender
 {
     NSLog(@"Button pressed, sender: %@", sender);
-    self.view.alpha = ((double)arc4random()/0X100000000);
+    if([sender isEqual:self.fiftyPercentButton]){
+        self.view.alpha = .5;
+    }else{
+        self.view.alpha = 1;
+    }
 }
 @end
